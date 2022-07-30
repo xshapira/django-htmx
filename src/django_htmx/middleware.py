@@ -21,9 +21,8 @@ class HtmxDetails:
 
     def _get_header_value(self, name: str) -> Optional[str]:
         value = self.request.headers.get(name) or None
-        if value:
-            if self.request.headers.get(f"{name}-URI-AutoEncoded") == "true":
-                value = unquote(value)
+        if value and self.request.headers.get(f"{name}-URI-AutoEncoded") == "true":
+            value = unquote(value)
         return value
 
     def __bool__(self) -> bool:

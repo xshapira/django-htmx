@@ -15,17 +15,17 @@ class HtmxMiddlewareTests(SimpleTestCase):
     def test_bool_default(self):
         request = self.request_factory.get("/")
         self.middleware(request)
-        assert bool(request.htmx) is False
+        assert not bool(request.htmx)
 
     def test_bool_false(self):
         request = self.request_factory.get("/", HTTP_HX_REQUEST="false")
         self.middleware(request)
-        assert bool(request.htmx) is False
+        assert not bool(request.htmx)
 
     def test_bool_true(self):
         request = self.request_factory.get("/", HTTP_HX_REQUEST="true")
         self.middleware(request)
-        assert bool(request.htmx) is True
+        assert bool(request.htmx)
 
     def test_current_url_default(self):
         request = self.request_factory.get("/")

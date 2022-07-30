@@ -98,11 +98,7 @@ def partial_rendering(request: HttpRequest) -> HttpResponse:
     # The htmx magic - use a different, minimal base template for htmx
     # requests, allowing us to skip rendering the unchanging parts of the
     # template.
-    if request.htmx:
-        base_template = "_partial.html"
-    else:
-        base_template = "_base.html"
-
+    base_template = "_partial.html" if request.htmx else "_base.html"
     return render(
         request,
         "partial-rendering.html",
